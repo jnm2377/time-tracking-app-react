@@ -1,3 +1,4 @@
+//PARENT ========================================
 class TimersDashboard extends React.Component {
   render() {
     return (
@@ -13,6 +14,7 @@ class TimersDashboard extends React.Component {
   }
 }
 
+//CHILD 1 ========================================
 class EditableTimerList extends React.Component {
   render() {
     return (
@@ -33,5 +35,26 @@ class EditableTimerList extends React.Component {
         />
       </div>
     )
+  }
+}
+
+//GRANDCHILD 1 ========================================
+class EditableTimer extends React.Component {
+  render() {
+    if(this.props.editFormOpen) {
+      return (
+        <TimerForm
+          title={this.props.title}
+          project={this.props.project}
+        />
+      );
+    } else {
+      return (
+        <Timer
+          title={this.props.title}
+          project={this.props.project}
+        />
+      )
+    }
   }
 }

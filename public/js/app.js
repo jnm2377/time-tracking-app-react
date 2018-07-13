@@ -27,6 +27,8 @@ class TimersDashboard extends React.Component {
       //this is adding the new timer object to the state array of current timers
       //updating state without mutating it
     });
+
+    client.createTimer(t);
   };
 
   handleEditFormSubmit = (attrs) => {
@@ -46,6 +48,8 @@ class TimersDashboard extends React.Component {
           }
         })
     });
+
+    client.udpateTimer(attrs);
   };
 
   handleTrashClick = (timerId) => {
@@ -56,6 +60,10 @@ class TimersDashboard extends React.Component {
     this.setState({
       timers: this.state.timers.filter( t => t.id !== timerId),
     });
+
+    client.deleteTimer(
+      {id: timerId}
+    );
   };
 
   handleStartClick = (timerId) => {
@@ -83,6 +91,10 @@ class TimersDashboard extends React.Component {
         }
       })
     });
+
+    client.startTimer(
+      {id: timerId, start: now}
+    );
   };
 
   stopTimer = (timerId) => {
@@ -102,7 +114,12 @@ class TimersDashboard extends React.Component {
         }
       })
     });
+
+    client.stopTimer(
+      {id: timerId, stop: now}
+    );
   };
+
 
   render() {
     return (
